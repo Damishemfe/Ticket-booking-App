@@ -1,4 +1,5 @@
 import 'package:booktickets/component/app_styles.dart';
+import 'package:booktickets/screens/hotel_view.dart';
 import 'package:booktickets/screens/ticket_view.dart';
 import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/cupertino.dart';
@@ -100,6 +101,7 @@ class HomeScreen extends StatelessWidget {
 
           /*
           this section holds ths scrollable card views
+          upcoming flight section
            */
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
@@ -107,33 +109,52 @@ class HomeScreen extends StatelessWidget {
             child: Row(
               children: [
                 TicketView(),
+                TicketView(),
                 TicketView()
               ],
             ),
           ),
           const Gap(15),
 
-          
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Upcoming Flights",
-                style: Styles.h2,
-              ),
-              InkWell(
-                onTap: (){
-                  //print("You clicked me");
-                },
-                child: Text(
-                  "View all",
-                  style: Styles.textStyle.copyWith(
-                      color: Styles.primaryColor,
-                      fontStyle: FontStyle.italic),
+          /*
+          this section holds the bottom part of the screen
+          hotel section
+           */
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Hotels",
+                  style: Styles.h2,
                 ),
-              )
-            ],
-          )
+                InkWell(
+                  onTap: (){
+                    //print("You clicked me");
+                  },
+                  child: Text(
+                    "View all",
+                    style: Styles.textStyle.copyWith(
+                        color: Styles.primaryColor,
+                        fontStyle: FontStyle.italic),
+                  ),
+                )
+              ],
+            ),
+          ),
+          const Gap(15),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            padding: EdgeInsets.only(left: 20),
+            child: Row (
+              children: [
+                HotelView(),
+                HotelView(),
+                HotelView()
+              ],
+            )
+            ),
         ],
       ),
     );
