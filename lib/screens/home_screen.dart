@@ -1,3 +1,4 @@
+import 'package:booktickets/component/app_info_list.dart';
 import 'package:booktickets/component/app_styles.dart';
 import 'package:booktickets/screens/hotel_view.dart';
 import 'package:booktickets/screens/ticket_view.dart';
@@ -82,7 +83,7 @@ class HomeScreen extends StatelessWidget {
                       style: Styles.h2,
                     ),
                     InkWell(
-                      onTap: (){
+                      onTap: () {
                         //print("You clicked me");
                       },
                       child: Text(
@@ -107,11 +108,10 @@ class HomeScreen extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.only(left: 20),
             child: Row(
-              children: [
-                TicketView(),
-                TicketView(),
-                TicketView()
-              ],
+              children: ticketList
+                  .map((individualTickets) =>
+                      TicketView(ticketDetails: individualTickets))
+                  .toList(),
             ),
           ),
           const Gap(15),
@@ -130,7 +130,7 @@ class HomeScreen extends StatelessWidget {
                   style: Styles.h2,
                 ),
                 InkWell(
-                  onTap: (){
+                  onTap: () {
                     //print("You clicked me");
                   },
                   child: Text(
@@ -146,15 +146,14 @@ class HomeScreen extends StatelessWidget {
           const Gap(15),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            padding: EdgeInsets.only(left: 20),
-            child: Row (
-              children: [
-                HotelView(),
-                HotelView(),
-                HotelView()
-              ],
-            )
+            padding: const EdgeInsets.only(left: 20),
+            child: Row(
+              children: hotelList
+                  .map((individualHotel) =>
+                      HotelView(hotelDetails: individualHotel))
+                  .toList(),
             ),
+          ),
         ],
       ),
     );
